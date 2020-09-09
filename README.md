@@ -1,4 +1,4 @@
-# VLC for Android
+# VLC for Android 集成 Jellyfin-web
 This is the official **Android** port of [VLC](https://videolan.org/vlc/).
 
 VLC on Android plays all the same files as the classical version of VLC, and features a media database
