@@ -49,8 +49,8 @@ class JellyfinWebview : ContentActivity() {
     @SuppressLint("JavascriptInterface")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.jellyfin_webview)
-        mWebView = findViewById(R.id.jellyfin_main_webview)
+        setContentView(R.layout.browser_jellyfinweb)
+        mWebView = findViewById(R.id.jellyfinWebview)
 
         val webSetting: WebSettings = mWebView.getSettings()
         webSetting.javaScriptEnabled = true
