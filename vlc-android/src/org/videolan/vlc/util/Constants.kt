@@ -108,6 +108,7 @@ const val HEADER_MISC = 5L
 const val HEADER_STREAM = 6L
 const val HEADER_SERVER = 7L
 const val HEADER_PLAYLISTS = 8L
+const val HEADER_JELLYFIN = 9L
 const val ID_SETTINGS = 10L
 const val ID_ABOUT_TV = 11L
 const val ID_LICENCE = 12L
