@@ -172,6 +172,7 @@ class MainTvModel(app: Application) : AndroidViewModel(app), AbstractMedialibrar
 
     private suspend fun updateBrowsers() {
         val list = mutableListOf<MediaLibraryItem>()
+        list.add(DummyItem(HEADER_JELLYFIN,context.getString(R.string.jellyfin),null))
         val directories = DirectoryRepository.getInstance(context).getMediaDirectoriesList(context).toMutableList()
         if (!showInternalStorage && directories.isNotEmpty()) directories.removeAt(0)
         directories.forEach { if (it.location.scanAllowed()) list.add(it) }
