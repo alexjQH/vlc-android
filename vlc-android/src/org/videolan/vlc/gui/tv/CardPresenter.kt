@@ -168,6 +168,9 @@ class CardPresenter(private val context: Activity) : Presenter() {
             })
             badge.start()
         }
+        if(item is DummyItem && item.id == HEADER_JELLYFIN) {
+            holder.cardView.mainImage = ContextCompat.getDrawable(context, R.drawable.jellyfin_logo)
+        }
     }
 
     override fun onBindViewHolder(viewHolder: Presenter.ViewHolder, item: Any, payloads: List<Any>?) {
