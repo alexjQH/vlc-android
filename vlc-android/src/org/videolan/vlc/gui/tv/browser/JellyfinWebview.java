@@ -5,11 +5,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
@@ -19,8 +18,6 @@ import org.videolan.medialibrary.interfaces.media.AbstractMediaWrapper;
 import org.videolan.medialibrary.media.MediaWrapper;
 import org.videolan.vlc.R;
 import org.videolan.vlc.media.MediaUtils;
-import org.videolan.vlc.media.MediaWrapperList;
-import org.videolan.vlc.util.Util;
 
 import java.util.ArrayList;
 
@@ -89,12 +86,13 @@ public class JellyfinWebview extends BaseTvActivity {
 
     @JavascriptInterface
     public void appExit(){
-
+        this.finish();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        mWebView.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_ESCAPE));
+        //super.onBackPressed();
     }
 
     @Override
