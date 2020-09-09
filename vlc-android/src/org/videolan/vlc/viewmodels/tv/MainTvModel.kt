@@ -241,6 +241,7 @@ class MainTvModel(app: Application) : AndroidViewModel(app), AbstractMedialibrar
                 }
                 item.id == HEADER_SERVER -> activity.startActivity(Intent(activity, DialogActivity::class.java).setAction(DialogActivity.KEY_SERVER)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                item.id == HEADER_JELLYFIN -> activity.startActivity(Intent(activity,JellyfinWebview::class.java))
                 else -> {
                     val intent = Intent(activity, VerticalGridActivity::class.java)
                     intent.putExtra(MainTvActivity.BROWSER_TYPE, item.id)
