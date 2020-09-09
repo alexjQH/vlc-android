@@ -66,16 +66,9 @@ public class JellyfinWebview extends BaseTvActivity {
 
         mWebView.addJavascriptInterface(this,"ToVlcPlay");
 
-        mWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
+        mWebView.setWebViewClient(new WebViewClient());
 
         mWebView.loadUrl(indexpage);
-
     }
 
     @JavascriptInterface
@@ -119,7 +112,6 @@ public class JellyfinWebview extends BaseTvActivity {
 
         for(int i=0;i<jsa.length();i++){
             try {
-
                 JSONObject jso = jsa.getJSONObject(i);
                 String title = jso.getString("title");
                 String url = jso.getString("url");

@@ -145,7 +145,7 @@ android {
 
     splits {
         abi {
-            def isReleaseBuild = false
+            def isReleaseBuild = true
             gradle.startParameter.taskNames.find {
                 // Enable split for release builds in different build flavors
                 // (assemblePaidRelease, assembleFreeRelease, etc.).

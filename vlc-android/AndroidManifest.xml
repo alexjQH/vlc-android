@@ -627,6 +627,10 @@
                 android:name=".gui.tv.LicenceActivity"
                 android:screenOrientation="landscape"
                 android:theme="@style/Theme.VLC.TV"/>
+        <activity
+            android:name=".gui.tv.browser.JellyfinWebview"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.VLC.TV"/>
 
         <service
                 android:name=".RecommendationsService"
