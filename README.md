@@ -1,4 +1,6 @@
 # VLC for Android 集成 Jellyfin-web
+基于VLC 3.2.11修改，在TV界面中添加Jellyfin-web。
+
 This is the official **Android** port of [VLC](https://videolan.org/vlc/).
 
 VLC on Android plays all the same files as the classical version of VLC, and features a media database
