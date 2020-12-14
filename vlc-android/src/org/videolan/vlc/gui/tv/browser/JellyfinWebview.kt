@@ -1,11 +1,16 @@
 package org.videolan.vlc.gui.tv.browser
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.util.AttributeSet
 import android.util.Log
 import android.view.KeyEvent
 import android.webkit.JavascriptInterface
@@ -127,4 +132,37 @@ class JellyfinWebview : ContentActivity() {
 
         return mList
     }
+}
+
+/**
+ * 处理Android 5.0 5.1 webview 闪退
+ */
+class MyJFWebView : WebView {
+
+    companion object{
+        private fun getFixedContext(context: Context): Context {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                return context.createConfigurationContext(Configuration())
+            }
+            return context
+        }
+    }
+
+    constructor(context: Context) : super(getFixedContext(context))
+
+    constructor(context: Context, attrs: AttributeSet) : super(getFixedContext(context), attrs)
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+            getFixedContext(context),
+            attrs,
+            defStyleAttr
+    )
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(
+            getFixedContext(context),
+            attrs,
+            defStyleAttr,
+            defStyleRes
+    )
 }

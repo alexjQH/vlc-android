@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <WebView
+    <org.videolan.vlc.gui.tv.browser.MyJFWebView
         android:id="@+id/jellyfinWebview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
