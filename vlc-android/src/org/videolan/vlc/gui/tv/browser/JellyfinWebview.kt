@@ -3,7 +3,6 @@ package org.videolan.vlc.gui.tv.browser
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
@@ -11,13 +10,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.AttributeSet
-import android.util.Log
+import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import kotlinx.android.synthetic.main.not_compatible.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import org.json.JSONArray
@@ -27,9 +25,6 @@ import org.videolan.medialibrary.media.MediaWrapper
 import org.videolan.vlc.R
 import org.videolan.vlc.gui.ContentActivity
 import org.videolan.vlc.media.MediaUtils
-import org.videolan.vlc.media.MediaWrapperList
-import java.util.*
-import kotlin.collections.ArrayList
 
 @ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
@@ -41,11 +36,11 @@ class JellyfinWebview : ContentActivity() {
         when(it.what){
             1 -> {
                 var mediaWrapper = MediaWrapper(Uri.parse(it.obj as String?))
-                MediaUtils.openMedia(baseContext,mediaWrapper)
+                MediaUtils.openMedia(baseContext, mediaWrapper)
             }
             2 -> {
-                var mediaWrapperList : ArrayList<MediaWrapper> = it.obj as ArrayList<MediaWrapper>
-                MediaUtils.openList(baseContext,mediaWrapperList as ArrayList<AbstractMediaWrapper>,0,false)
+                var mediaWrapperList: ArrayList<MediaWrapper> = it.obj as ArrayList<MediaWrapper>
+                MediaUtils.openList(baseContext, mediaWrapperList as ArrayList<AbstractMediaWrapper>, 0, false)
             }
         }
         false
@@ -82,6 +77,13 @@ class JellyfinWebview : ContentActivity() {
         webSetting.setAppCacheEnabled(true)
         webSetting.setAppCacheMaxSize(Long.MAX_VALUE)
 
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+        val mDensity: Int = metrics.densityDpi
+        val textzone: Int = 100 - mDensity / 10
+
+        webSetting.textZoom = textzone
+
         mWebView.setWebViewClient(WebViewClient())
 
         //JS访问接口
@@ -97,7 +99,7 @@ class JellyfinWebview : ContentActivity() {
     }
 
     @JavascriptInterface
-    fun toPlayer(videourl : String) {
+    fun toPlayer(videourl: String) {
         var msg = Message()
         msg.what = 1
         msg.obj = videourl
@@ -105,7 +107,7 @@ class JellyfinWebview : ContentActivity() {
     }
 
     @JavascriptInterface
-    fun toPlayList(items : String) {
+    fun toPlayList(items: String) {
         var msg = Message()
         msg.what = 2
         msg.obj = createMediaWrapperList(items)
