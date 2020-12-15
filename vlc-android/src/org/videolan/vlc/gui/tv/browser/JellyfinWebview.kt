@@ -80,7 +80,7 @@ class JellyfinWebview : ContentActivity() {
         val metrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(metrics)
         val mDensity: Int = metrics.densityDpi
-        val textzoom: Int = 100 - mDensity / 10
+        val textzoom: Int = mDensity / 10
         webSetting.textZoom = textzoom
 
         mWebView.setWebViewClient(WebViewClient())
